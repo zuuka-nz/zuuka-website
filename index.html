@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zuuka</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-b"> <!-- Default theme -->
+
+  <!-- Theme Toggle Button -->
+  <div class="theme-toggle">
+    <button id="toggleButton">Switch Theme</button>
+  </div>
+
+  <header>
+    <h1 class="logo">zuuka</h1>
+    <p class="tagline">Simpler, smarter, greener: the zuuka next-generation drug infusion pump</p>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="hero-line">A smarter, simpler, greener drug infusion solution that lends itself to your lifestyle.</p>
+    </section>
+
+    <section class="about">
+      <p>
+        Zuuka is resetting the expectations of drug infusion pumps, radically simplifying prescription, support, and maintenance. 
+        A simpler, more effective pump results in better patient outcomes — it’s as simple as that.
+      </p>
+    </section>
+
+    <section class="audiences">
+      <div class="audience-box">
+        <h2>For Patients</h2>
+        <p>Infusion should fit your life, not the other way around. Zuuka is designed to be discreet, easy to use, and better for the environment — giving you more freedom and confidence in your therapy.</p>
+      </div>
+      <div class="audience-box">
+        <h2>For Clinicians</h2>
+        <p>Zuuka simplifies prescription and support, reducing device complexity and helping you focus on patient care. Smarter connectivity means clearer insights, fewer steps, and better outcomes.</p>
+      </div>
+      <div class="audience-box">
+        <h2>For Investors</h2>
+        <p>The global infusion market is ripe for change. Zuuka’s platform approach addresses patient, clinician, and payer needs with a solution that is simpler, greener, and built for scale.</p>
+      </div>
+    </section>
+
+    <section class="contact">
+      <h2>Get in touch</h2>
+      <p>Email us at <a href="mailto:enquiries@zuuka.com">enquiries@zuuka.com</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Zuuka Ltd</p>
+    <p class="disclaimer">This product is under development and has not been cleared or approved by regulatory authorities.</p>
+  </footer>
+
+  <script>
+    const themes = ['theme-a', 'theme-b', 'theme-c'];
+    let current = 1; // starts on theme-b
+    const button = document.getElementById('toggleButton');
+
+    button.addEventListener('click', () => {
+      document.body.classList.remove(themes[current]);
+      current = (current + 1) % themes.length;
+      document.body.classList.add(themes[current]);
+    });
+  </script>
+</body>
+</html>
