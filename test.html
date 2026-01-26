@@ -75,32 +75,6 @@
       );
     };
 
-    const Nav = () => (
-      <nav
-        className="sticky top-0 left-0 right-0 z-50"
-        style={{
-          background: `${colors.bgDeep}`,
-          backdropFilter: 'blur(20px)',
-          borderBottom: `1px solid ${colors.bgSurface}`,
-        }}
-      >
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-          <ZuukaLogo height={22} bgColor={colors.bgDeep} />
-          <div className="flex items-center gap-6">
-            <a href="#about" className="text-sm" style={{ color: colors.textSecondary }}>About</a>
-            <a href="#team" className="text-sm" style={{ color: colors.textSecondary }}>Team</a>
-            <a
-              href="mailto:hello@zuuka.com"
-              className="px-4 py-2 rounded-lg text-sm font-medium"
-              style={{ background: colors.bgSurface, color: colors.textPrimary }}
-            >
-              Contact
-            </a>
-          </div>
-        </div>
-      </nav>
-    );
-
     const Hero = () => (
       <section
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
@@ -389,7 +363,6 @@
       return (
         <div style={{ background: colors.bgDeep, minHeight: '100vh' }}>
           <Hero />
-          <Nav />
           <About />
           <Thesis />
           <Team />
