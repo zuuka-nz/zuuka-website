@@ -163,15 +163,9 @@
       </section>
     );
 
-    const AboutSketchCard = ({ imageSrc, label }) => (
+    const AboutSketchCard = ({ imageSrc }) => (
       <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
         <div>
-          <p
-            className="text-sm font-mono mb-4"
-            style={{ color: colors.orange }}
-          >
-            {label}
-          </p>
           <h2
             className="text-4xl font-bold mb-6"
             style={{ color: colors.textPrimary }}
@@ -184,7 +178,7 @@
             className="text-lg leading-relaxed mb-6"
             style={{ color: colors.textSecondary }}
           >
-            Millions depend upon reliable drug delivery to improve their quality of life. However, current devices have not kept pace with the expectations of a wearable device: usability, simplicity, and modern design. These factors impact upon adoption and compliance, and can leave people with a sense of fatigue over managing their own health outcomes.
+            Millions depend upon reliable drug delivery to improve their quality of life. However, current devices have not kept pace with the expectations of a wearable device: usability, simplicity, and modern design. This impacts adoption and compliance, and can leave people with a sense of fatigue over managing their own health outcomes.
           </p>
           <p
             className="text-lg leading-relaxed mb-6"
@@ -234,10 +228,7 @@
     const About = () => (
       <section id="about" className="py-24" style={{ background: colors.bgPrimary }}>
         <div className="max-w-5xl mx-auto px-6">
-          <AboutSketchCard
-            imageSrc="sketch-multi-angle.png"
-            label="VERSION A — Multi-angle sketch"
-          />
+          <AboutSketchCard imageSrc="sketch-multi-angle.png" />
         </div>
       </section>
     );
@@ -264,7 +255,7 @@
               {
                 number: '02',
                 title: 'Built by listening',
-                description: 'The best insights don\'t come from labs — they come from the people who live with these devices every day. We design with patients, not just for them.',
+                description: 'Our best insights don\'t come from labs — they come from the people who live with these devices every day. We design with patients, not just for them.',
               },
               {
                 number: '03',
@@ -364,7 +355,7 @@
                   {member.name}
                 </h3>
                 <p
-                  className="text-sm mb-4"
+                  className="text-sm font-mono mb-4"
                   style={{ color: colors.orange }}
                 >
                   {member.role}
