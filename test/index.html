@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protected Area</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #1a1a2e;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-container {
+            background: #16213e;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 360px;
+        }
+        h1 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+        .input-group {
+            margin-bottom: 1rem;
+        }
+        input[type="password"] {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid #0f3460;
+            border-radius: 8px;
+            background: #1a1a2e;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        input[type="password"]:focus {
+            border-color: #e94560;
+        }
+        input[type="password"]::placeholder {
+            color: #6c7293;
+        }
+        button {
+            width: 100%;
+            padding: 0.875rem;
+            background: #e94560;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #ff6b6b;
+        }
+        .error {
+            color: #e94560;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            display: none;
+        }
+        .protected-content {
+            display: none;
+            color: #fff;
+        }
+        .protected-content h2 {
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        .protected-content ul {
+            list-style: none;
+        }
+        .protected-content li {
+            margin-bottom: 0.75rem;
+        }
+        .protected-content a {
+            color: #e94560;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .protected-content a:hover {
+            color: #ff6b6b;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div id="login-form">
+            <h1>Protected Area</h1>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Enter password" autofocus>
+            </div>
+            <button onclick="checkPassword()">Access</button>
+            <p class="error" id="error">Incorrect password</p>
+        </div>
+        <div class="protected-content" id="content">
+            <h2>Protected Files</h2>
+            <ul>
+                <li><a href="test.html">test.html</a></li>
+                <li><a href="zuuka-website.jsx">zuuka-website.jsx</a></li>
+                <li><a href="sketch-detailed.png">sketch-detailed.png</a></li>
+                <li><a href="sketch-multi-angle.png">sketch-multi-angle.png</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Simple hash function for client-side password check
+        async function hashPassword(password) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(password);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        // Pre-computed hash of "zuuka2026"
+        const correctHash = '9c5e77f69979818ae5d7e23b3a6be5850859bf3e347734092179cb67f0de8c41';
+
+        async function checkPassword() {
+            const password = document.getElementById('password').value;
+            const hash = await hashPassword(password);
+
+            if (hash === correctHash) {
+                document.getElementById('login-form').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+                sessionStorage.setItem('authenticated', 'true');
+            } else {
+                document.getElementById('error').style.display = 'block';
+                document.getElementById('password').value = '';
+            }
+        }
+
+        // Allow Enter key to submit
+        document.getElementById('password').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        // Check if already authenticated in this session
+        if (sessionStorage.getItem('authenticated') === 'true') {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
