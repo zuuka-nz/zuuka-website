@@ -8,7 +8,7 @@
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div id="root"></div>
@@ -93,17 +93,23 @@
         />
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-          <h1
-            className="text-5xl font-bold mb-6 leading-tight"
-            style={{ color: colors.textPrimary }}
-          >
-            Redesigning wearable
-            <br />
-            <span style={{ color: colors.orange }}>drug infusion</span>
+          <h1 className="mb-6 leading-tight">
+            <span
+              className="block text-6xl font-light mb-2"
+              style={{ color: colors.textPrimary }}
+            >
+              Redesigning wearable
+            </span>
+            <span
+              className="block text-7xl font-bold"
+              style={{ color: colors.orange }}
+            >
+              drug infusion
+            </span>
           </h1>
 
           <p
-            className="text-xl mb-8 max-w-2xl mx-auto leading-relaxed"
+            className="text-lg font-light tracking-widest max-w-2xl mx-auto"
             style={{ color: colors.textSecondary }}
           >
             Smarter. Simpler. Greener.
@@ -126,12 +132,12 @@
       <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
         <div>
           <h2
-            className="text-4xl font-bold mb-6"
+            className="text-4xl font-light mb-6"
             style={{ color: colors.textPrimary }}
           >
-            Wearable infusion
+            Infusion
             <br />
-            <span style={{ color: colors.orange }}>reimagined</span>
+            <span className="font-bold" style={{ color: colors.orange }}>reimagined</span>
           </h2>
           <p
             className="text-lg leading-relaxed mb-6"
@@ -180,7 +186,7 @@
 
         <div className="max-w-4xl mx-auto px-6 relative z-10">
           <h2
-            className="text-4xl font-bold mb-12 text-center"
+            className="text-4xl font-light mb-12 text-center"
             style={{ color: colors.textPrimary }}
           >
             What's driving us
@@ -243,7 +249,7 @@
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-12">
             <h2
-              className="text-4xl font-bold mb-4"
+              className="text-4xl font-light mb-4"
               style={{ color: colors.textPrimary }}
             >
               Our founding team
@@ -320,7 +326,7 @@
 
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <h2
-            className="text-4xl font-bold mb-4"
+            className="text-4xl font-light mb-4"
             style={{ color: colors.textPrimary }}
           >
             Let's talk
