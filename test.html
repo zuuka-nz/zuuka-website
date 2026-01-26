@@ -184,7 +184,7 @@
             className="text-lg leading-relaxed mb-6"
             style={{ color: colors.textSecondary }}
           >
-            Millions of people depend on wearable drug delivery every day. The devices work — but the experience hasn't kept pace with what people expect from the technology they wear.
+            Millions depend upon drug delivery to improve their quality of life. Current devices have not kept pace with expectations of wearable technology. There doesn't need to be a compromise.
           </p>
           <p
             className="text-lg leading-relaxed"
@@ -253,7 +253,7 @@
               {
                 number: '01',
                 title: 'The status quo isn\'t good enough',
-                description: 'Current wearable infusion systems are effective but cumbersome. Users deserve devices that fit seamlessly into their lives.',
+                description: 'Current wearable infusion systems perform a function but neglect their own impact. Users demand devices that fit into their lives, not the other way around.',
               },
               {
                 number: '02',
@@ -397,14 +397,14 @@
           <div className="grid md:grid-cols-2 gap-6 max-w-xl mx-auto">
             <a
               href="mailto:investors@zuuka.com"
-              className="p-6 rounded-2xl text-left"
+              className="p-6 rounded-2xl text-center"
               style={{
                 background: colors.bgPrimary,
                 border: `1px solid ${colors.bgSurface}`,
               }}
             >
               <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
+                className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 mx-auto"
                 style={{ background: colors.bgSurface }}
               >
                 <span style={{ color: colors.orange }}>→</span>
@@ -419,14 +419,14 @@
 
             <a
               href="mailto:hello@zuuka.com"
-              className="p-6 rounded-2xl text-left"
+              className="p-6 rounded-2xl text-center"
               style={{
                 background: colors.bgPrimary,
                 border: `1px solid ${colors.bgSurface}`,
               }}
             >
               <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
+                className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 mx-auto"
                 style={{ background: colors.bgSurface }}
               >
                 <span style={{ color: colors.orange }}>✉</span>
@@ -451,17 +451,16 @@
           borderTop: `1px solid ${colors.bgSurface}`,
         }}
       >
-        <div className="max-w-5xl mx-auto px-6 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="flex items-center gap-4 mb-4">
             <ZuukaLogo height={16} bgColor={colors.bgDeep} />
             <span className="text-sm" style={{ color: colors.textTertiary }}>
-              © 2025 Zuuka Health, Inc.
+              © 2025 Zuuka Limited
             </span>
           </div>
-          <div className="flex items-center gap-6">
-            <a href="#" className="text-sm" style={{ color: colors.textTertiary }}>Privacy</a>
-            <a href="#" className="text-sm" style={{ color: colors.textTertiary }}>Terms</a>
-          </div>
+          <p className="text-sm" style={{ color: colors.textTertiary }}>
+            Zuuka is currently developing a wearable drug infusion solution. This product is not yet available for purchase, nor has it received regulatory approval for sale in any international market.
+          </p>
         </div>
       </footer>
     );
