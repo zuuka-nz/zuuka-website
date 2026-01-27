@@ -267,16 +267,19 @@
                 name: 'Jamie Cairns',
                 role: 'CEO & Co-founder',
                 bio: 'Placeholder bio — 15+ years in medical devices and healthcare technology. Previously led product at [Company]. Background in biomedical engineering.',
+                linkedin: 'https://www.linkedin.com/in/jamie-cairns/',
               },
               {
                 name: 'Jake Campbell',
                 role: 'CTO & Co-founder',
                 bio: 'Placeholder bio — Deep expertise in embedded systems and wearable technology. Former engineering lead at [Company]. Built devices used by millions.',
+                linkedin: 'https://www.linkedin.com/in/placeholder-jake/',
               },
               {
                 name: 'Sam Stewart',
                 role: 'Chairperson',
                 bio: 'Placeholder bio — Seasoned healthcare executive with multiple successful exits. Board experience across medical device and digital health companies.',
+                linkedin: 'https://www.linkedin.com/in/placeholder-sam/',
               },
             ].map((member, i) => (
               <div
@@ -307,11 +310,20 @@
                   {member.role}
                 </p>
                 <p
-                  className="text-sm leading-relaxed"
+                  className="text-sm leading-relaxed mb-4"
                   style={{ color: colors.textSecondary }}
                 >
                   {member.bio}
                 </p>
+                <a
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-mono"
+                  style={{ color: colors.orange }}
+                >
+                  LinkedIn →
+                </a>
               </div>
             ))}
           </div>
