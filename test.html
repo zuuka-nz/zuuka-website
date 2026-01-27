@@ -158,14 +158,27 @@
           </p>
         </div>
 
-        <div
-          className="aspect-square rounded-3xl overflow-hidden relative"
-          style={{ background: colors.bgElevated }}
-        >
+        <div className="relative" style={{ marginLeft: '-5%' }}>
+          <div
+            className="aspect-square rounded-3xl overflow-hidden"
+            style={{ background: colors.bgElevated, width: '85%' }}
+          >
+            <img
+              src={imageSrc}
+              alt="Product concept sketch"
+              className="w-full h-full object-cover"
+            />
+          </div>
           <img
-            src={imageSrc}
-            alt="Product concept sketch"
-            className="w-full h-full object-cover"
+            src="image1.png"
+            alt="App interface"
+            className="absolute rounded-2xl shadow-2xl"
+            style={{
+              width: '45%',
+              bottom: '-10%',
+              right: '0',
+              boxShadow: `0 20px 60px rgba(0, 0, 0, 0.5)`,
+            }}
           />
         </div>
       </div>
