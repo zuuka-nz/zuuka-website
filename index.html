@@ -1,72 +1,423 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zuuka</title>
-  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="theme-b"> <!-- Default theme -->
+<body>
+  <div id="root"></div>
+  <script type="text/babel" data-presets="react">
+    const { useState, useEffect } = React;
 
-  <!-- Theme Toggle Button -->
-  <div class="theme-toggle">
-    <button id="toggleButton">Switch Theme</button>
-  </div>
+    const colors = {
+      bgDeep: '#0D0B09',
+      bgPrimary: '#1A1714',
+      bgElevated: '#252220',
+      bgSurface: '#2F2B28',
+      orange: '#F5A623',
+      orangeLight: '#FFBE4D',
+      orangeMuted: '#B37A1A',
+      orangePale: '#FFF4E0',
+      textPrimary: '#FAF8F5',
+      textSecondary: '#A8A29E',
+      textTertiary: '#6D6762',
+    };
 
-  <header>
-    <h1 class="logo">zuuka</h1>
-    <p class="tagline">Simpler, smarter, greener: the next-generation zuuka drug infusion pump</p>
-  </header>
+    const GlowOrb = ({ className, style }) => (
+      <div
+        className={`absolute rounded-full ${className}`}
+        style={{
+          background: `radial-gradient(circle, ${colors.orange}33 0%, transparent 70%)`,
+          filter: 'blur(60px)',
+          ...style,
+        }}
+      />
+    );
 
-  <main>
-    <section class="hero">
-      <p class="hero-line">A smarter, simpler, greener drug infusion solution that lends itself to your lifestyle.</p>
-    </section>
+    const ZuukaLogo = ({ height = 24, bgColor = colors.bgDeep }) => {
+      const scale = height / 32;
+      const carveoutHeight = Math.max(1.5, 2.5 * scale);
 
-    <section class="about">
-      <p>
-        Zuuka is resetting the expectations of drug infusion pumps, radically simplifying use, prescription, and support. 
-        A simpler, more effective pump results in better patient outcomes — it’s as simple as that.
-      </p>
-    </section>
+      return (
+        <div style={{
+          position: 'relative',
+          display: 'inline-flex',
+          alignItems: 'center',
+          height: `${height}px`,
+          overflow: 'hidden',
+        }}>
+          <span style={{
+            fontFamily: "'Montserrat', sans-serif",
+            fontWeight: 400,
+            fontSize: `${height * 1.05}px`,
+            letterSpacing: `${3.5 * scale}px`,
+            color: colors.textPrimary,
+            lineHeight: 1,
+            display: 'block',
+          }}>
+            zuuka
+          </span>
+          <div style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            height: `${carveoutHeight}px`,
+            top: '65%',
+            backgroundColor: bgColor,
+          }} />
+        </div>
+      );
+    };
 
-    <section class="audiences">
-      <div class="audience-box">
-        <h2>For Patients</h2>
-        <img src="https://www.khulsey.com/portfolioimages/prudential-lighting-exploded-view.jpg">
-        <p>Your pump should fit your life, not the other way around. Zuuka is designed to be discreet, easy to use, and better for the environment — giving you more freedom and confidence in your therapy.</p>
+    const Hero = () => (
+      <section
+        className="relative flex items-center justify-center overflow-hidden"
+        style={{ minHeight: 'calc(100vh - 54px)', background: colors.bgDeep }}
+      >
+        <GlowOrb className="w-96 h-96" style={{ top: '-10%', left: '-10%' }} />
+        <GlowOrb className="w-64 h-64" style={{ top: '30%', right: '-5%' }} />
+        <GlowOrb className="w-80 h-80" style={{ bottom: '0', left: '25%' }} />
+
+        <div
+          className="absolute inset-0 opacity-5"
+          style={{
+            backgroundImage: `linear-gradient(${colors.textTertiary} 1px, transparent 1px), linear-gradient(90deg, ${colors.textTertiary} 1px, transparent 1px)`,
+            backgroundSize: '60px 60px',
+          }}
+        />
+
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+          <h1 className="mb-6 leading-tight">
+            <span
+              className="block text-6xl font-light mb-2"
+              style={{ color: colors.textPrimary }}
+            >
+              Redesigning wearable
+            </span>
+            <span
+              className="block text-7xl font-bold"
+              style={{ color: colors.orange }}
+            >
+              drug infusion
+            </span>
+          </h1>
+
+          <p
+            className="text-lg font-light tracking-widest max-w-2xl mx-auto"
+            style={{ color: colors.textSecondary }}
+          >
+            Smarter. Simpler. Greener.
+          </p>
+        </div>
+
+      </section>
+    );
+
+    const StickyLogo = () => (
+      <div
+        className="sticky top-0 z-50 py-4 flex justify-center"
+        style={{ background: colors.bgDeep }}
+      >
+        <ZuukaLogo height={22} bgColor={colors.bgDeep} />
       </div>
-      <div class="audience-box">
-        <h2>For Clinicians</h2>
-        <p>Zuuka simplifies prescription and support, reducing device complexity and helping you focus on patient care. Smarter connectivity means clearer insights, simpler operation means less support, and these both lead to better outcomes.</p>
+    );
+
+    const AboutSketchCard = ({ imageSrc }) => (
+      <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+        <div>
+          <h2
+            className="text-4xl font-light mb-6"
+            style={{ color: colors.textPrimary }}
+          >
+            Infusion
+            <span className="block font-bold text-5xl" style={{ color: colors.orange }}>reimagined</span>
+          </h2>
+          <p
+            className="text-lg leading-relaxed mb-6"
+            style={{ color: colors.textSecondary }}
+          >
+            Millions depend upon reliable drug delivery to improve their quality of life. However, current devices have not kept pace with the expectations of a wearable device: usability, simplicity, and modern design. This impacts adoption and compliance, and can leave people with a sense of fatigue over managing their own health outcomes.
+          </p>
+          <p
+            className="text-lg leading-relaxed mb-6"
+            style={{ color: colors.textSecondary }}
+          >
+            There doesn't need to be a compromise.
+          </p>
+          <p
+            className="text-lg leading-relaxed"
+            style={{ color: colors.textSecondary }}
+          >
+            We're building the next generation: smarter systems, simpler interfaces, and hardware designed for real life.
+          </p>
+        </div>
+
+        <div className="relative" style={{ marginLeft: '-5%' }}>
+          <div
+            className="aspect-square rounded-3xl overflow-hidden"
+            style={{ background: colors.bgPrimary, width: '85%' }}
+          >
+            <img
+              src={imageSrc}
+              alt="Product concept sketch"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <img
+            src="image1.png"
+            alt="App interface"
+            className="absolute rounded-2xl shadow-2xl"
+            style={{
+              width: '45%',
+              bottom: '-10%',
+              right: '0',
+              boxShadow: `0 20px 60px rgba(0, 0, 0, 0.5)`,
+            }}
+          />
+        </div>
       </div>
-      <div class="audience-box">
-        <h2>For Investors</h2>
-        <p>The global infusion market is screaming for change. Zuuka’s approach to drug delivery addresses patient, clinician, and payer needs with a solution that is simpler, greener, and built for scale.</p>
-      </div>
-    </section>
+    );
 
-    <section class="contact">
-      <h2>Get in touch</h2>
-      <p>Email us at <a href="mailto:enquiries@zuuka.com">enquiries@zuuka.com</a></p>
-    </section>
-  </main>
+    const About = () => (
+      <section id="about" className="py-24" style={{ background: colors.bgPrimary }}>
+        <div className="max-w-5xl mx-auto px-6">
+          <AboutSketchCard imageSrc="sketch-multi-angle.png" />
+        </div>
+      </section>
+    );
 
-  <footer>
-    <p>© 2025 Zuuka Ltd</p>
-    <p class="disclaimer">This product is under development and has not been cleared or approved by regulatory authorities.</p>
-  </footer>
+    const Thesis = () => (
+      <section className="py-24 relative overflow-hidden" style={{ background: colors.bgDeep }}>
+        <GlowOrb className="w-96 h-96" style={{ top: '0', right: '0' }} />
 
-  <script>
-    const themes = ['theme-a', 'theme-b', 'theme-c'];
-    let current = 1; // starts on theme-b
-    const button = document.getElementById('toggleButton');
+        <div className="max-w-4xl mx-auto px-6 relative z-10">
+          <h2
+            className="text-4xl font-light mb-12 text-center"
+            style={{ color: colors.textPrimary }}
+          >
+            What's driving us
+          </h2>
 
-    button.addEventListener('click', () => {
-      document.body.classList.remove(themes[current]);
-      current = (current + 1) % themes.length;
-      document.body.classList.add(themes[current]);
-    });
+          <div className="space-y-6">
+            {[
+              {
+                number: '01',
+                title: 'The status quo isn\'t good enough',
+                description: 'Current wearable infusion systems perform a function but neglect their own impact. Users demand devices that fit into their lives, not the other way around.',
+              },
+              {
+                number: '02',
+                title: 'Built by listening',
+                description: 'Our best insights don\'t come from labs — they come from the people who live with these devices every day. We design with patients, not just for them.',
+              },
+              {
+                number: '03',
+                title: 'Design matters',
+                description: 'Form factor, interface, and experience aren\'t nice-to-haves — they\'re essential.',
+              },
+            ].map((item) => (
+              <div
+                key={item.number}
+                className="p-6 rounded-2xl"
+                style={{
+                  background: colors.bgPrimary,
+                  border: `1px solid ${colors.bgSurface}`,
+                }}
+              >
+                <div className="flex items-start gap-5">
+                  <span
+                    className="text-sm font-mono"
+                    style={{ color: colors.orange }}
+                  >
+                    {item.number}
+                  </span>
+                  <div>
+                    <h3
+                      className="text-xl font-semibold mb-2"
+                      style={{ color: colors.textPrimary }}
+                    >
+                      {item.title}
+                    </h3>
+                    <p style={{ color: colors.textSecondary }}>
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    const Team = () => (
+      <section id="team" className="py-24" style={{ background: colors.bgPrimary }}>
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2
+              className="text-4xl font-light mb-4"
+              style={{ color: colors.textPrimary }}
+            >
+              Our founding team
+            </h2>
+            <p
+              className="text-xl max-w-2xl mx-auto"
+              style={{ color: colors.textSecondary }}
+            >
+              Deep expertise in medical devices, wearable technology, and building products people love.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                name: 'Jake Campbell',
+                role: 'CTO & Co-founder',
+                bio: 'Jake Campbell is a mechanical engineer with a PhD from the University of Canterbury. His background spans medical device prototyping, sensing systems, and early-stage medtech development, with experience taking an idea from prototype through to proof-of-concept clinical trials conducted through academic research programmes. He served as technical lead on a multi-year, multi-million-dollar research programme focused on translating research concepts into technologies with commercial potential.',
+                linkedin: 'https://www.linkedin.com/in/placeholder-jake/',
+                image: 'profile.jake.grey.jpeg',
+              },
+              {
+                name: 'Jamie Cairns',
+                role: 'CEO & Co-founder',
+                bio: 'Jamie Cairns is a repeat founder and CEO who has scaled technology-led businesses into global markets. His background spans medtech, data platforms, and infrastructure, with outcomes across capital raising, international expansion, IPO, acquisition, and exit.',
+                linkedin: 'https://www.linkedin.com/in/jamie-cairns/',
+                image: 'profile.jamie.grey.jpeg',
+              },
+              {
+                name: 'Sam Stewart',
+                role: 'Chairperson',
+                bio: 'Sam Stewart leads venture-building initiatives at Precast Ventures and Calder Stewart, and is an active investor in early-stage businesses both directly and through his family office. A Harvard Business School alumni with a keen focus upon innovation and commercialization, Sam brings a passion for growth and an eye for the US market.',
+                linkedin: 'https://www.linkedin.com/in/placeholder-sam/',
+                image: 'profile.sam.grey.jpeg',
+              },
+            ].map((member, i) => (
+              <div
+                key={i}
+                className="p-6 rounded-2xl text-center"
+                style={{
+                  background: colors.bgElevated,
+                  border: `1px solid ${colors.bgSurface}`,
+                }}
+              >
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-36 h-36 rounded-full mx-auto mb-5 object-cover"
+                  style={{
+                    border: `2px solid ${colors.bgSurface}`,
+                  }}
+                />
+                <h3
+                  className="text-lg font-semibold mb-1"
+                  style={{ color: colors.textPrimary }}
+                >
+                  {member.name}
+                </h3>
+                <p
+                  className="text-sm font-mono mb-4"
+                  style={{ color: colors.orange }}
+                >
+                  {member.role}
+                </p>
+                <p
+                  className="text-sm leading-relaxed mb-4"
+                  style={{ color: colors.textSecondary }}
+                >
+                  {member.bio}
+                </p>
+                <a
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-mono"
+                  style={{ color: colors.orange }}
+                >
+                  LinkedIn →
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    const Contact = () => (
+      <section className="py-24 relative overflow-hidden" style={{ background: colors.bgDeep }}>
+        <GlowOrb className="w-64 h-64" style={{ bottom: '0', left: '25%' }} />
+
+        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+          <h2
+            className="text-4xl font-light mb-4"
+            style={{ color: colors.textPrimary }}
+          >
+            Let's talk
+          </h2>
+          <p
+            className="text-xl mb-10 max-w-xl mx-auto"
+            style={{ color: colors.textSecondary }}
+          >
+            Whether you're an investor, potential partner, or just curious about what we're building — we'd love to hear from you.
+          </p>
+
+          <a
+            href="mailto:hello@zuuka.com"
+            className="inline-block px-8 py-4 rounded-xl font-semibold text-lg"
+            style={{
+              background: colors.orange,
+              color: colors.bgDeep,
+              boxShadow: `0 0 40px ${colors.orange}33`,
+            }}
+          >
+            Get in Touch
+          </a>
+        </div>
+      </section>
+    );
+
+    const Footer = () => (
+      <footer
+        className="py-6"
+        style={{
+          background: colors.bgDeep,
+          borderTop: `1px solid ${colors.bgSurface}`,
+        }}
+      >
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="flex items-center justify-between mb-4">
+            <ZuukaLogo height={16} bgColor={colors.bgDeep} />
+            <span className="text-sm" style={{ color: colors.textTertiary }}>
+              © 2026 Zuuka Limited
+            </span>
+          </div>
+          <p className="text-sm" style={{ color: colors.textTertiary }}>
+            Zuuka is currently developing a wearable drug infusion solution. This product is not yet available for purchase, nor has it received regulatory approval for sale in any international market.
+          </p>
+        </div>
+      </footer>
+    );
+
+    function ZuukaWebsite() {
+      return (
+        <div style={{ background: colors.bgDeep, minHeight: '100vh' }}>
+          <Hero />
+          <StickyLogo />
+          <About />
+          <Thesis />
+          <Team />
+          <Contact />
+          <Footer />
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<ZuukaWebsite />);
   </script>
 </body>
 </html>
