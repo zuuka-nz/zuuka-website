@@ -9,6 +9,25 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Application Insights browser SDK. Connection string is a public client telemetry identifier (not a secret). -->
+  <script src="https://js.monitor.azure.com/scripts/b/ai.3.gbl.min.js"></script>
+  <script type="text/javascript">
+    (function () {
+      var connStr = "InstrumentationKey=d7239635-8927-4bd3-92cc-2df26ce3d55c;IngestionEndpoint=https://eastasia-0.in.applicationinsights.azure.com/;LiveEndpoint=https://eastasia.livediagnostics.monitor.azure.com/;ApplicationId=c2622144-10ef-43f8-96c4-90aef3b1d3fe";
+      if (!connStr || connStr.indexOf("PLACEHOLDER") === 0) return;
+      var ai = new Microsoft.ApplicationInsights.ApplicationInsights({
+        config: {
+          connectionString: connStr,
+          enableAutoRouteTracking: true,
+          disableFetchTracking: false,
+        },
+      });
+      ai.loadAppInsights();
+      ai.trackPageView();
+      window.appInsights = ai;
+    })();
+  </script>
 </head>
 <body>
   <div id="root"></div>
