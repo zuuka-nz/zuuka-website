@@ -1,0 +1,15 @@
+{
+  "routes": [
+    {
+      "route": "/go/*",
+      "rewrite": "/api/go"
+    }
+  ],
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/assets/*", "/*.{png,jpg,jpeg,svg,ico,css,js}", "/api/*"]
+  },
+  "platform": {
+    "apiRuntime": "node:18"
+  }
+}
